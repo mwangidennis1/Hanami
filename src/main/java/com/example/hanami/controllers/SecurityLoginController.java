@@ -7,8 +7,6 @@ import com.example.hanami.services.AuthentcationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,5 +29,6 @@ public class SecurityLoginController {
        return ResponseEntity.ok(authentcationService.authenticate(request))
                ;
     }
+
 
 }

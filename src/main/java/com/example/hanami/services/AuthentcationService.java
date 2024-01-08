@@ -4,7 +4,6 @@ import com.example.hanami.config.JwtService;
 import com.example.hanami.dto.AuthenticationRequest;
 import com.example.hanami.dto.AuthenticationResponse;
 import com.example.hanami.dto.RegistrationRequest;
-import com.example.hanami.model.Role;
 import com.example.hanami.model.User;
 import com.example.hanami.repositories.UserRepository;
 import com.example.hanami.securityconfig.UserConfig;
@@ -23,9 +22,7 @@ public class AuthentcationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     public static  String myJwt;
-    public static String getMyJwt(){
-        return myJwt;
-    }
+
     public AuthenticationResponse register(RegistrationRequest request){
         User user= User.builder()
                 .name(request.getUsername())
@@ -53,4 +50,5 @@ public class AuthentcationService {
                 .build();
 
     }
+
 }

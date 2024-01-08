@@ -32,6 +32,15 @@ public class JwtService {
        return resolveClaims.apply(claims);
     }
     //Method to generate token with claims
+    public String generateToken(Map<String ,Object> claims){
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis()*60*100*24))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .compact();
+
+    }
     public String generateToken(Map<String ,Object> claims, UserDetails userDetails){
         return Jwts.builder()
                 .setClaims(claims)
