@@ -16,4 +16,6 @@ SELECT u FROM User u WHERE u.email =:email
  SELECT u FROM User u WHERE u.resetPasswordToken =:token
 """)
     Optional<User> findByAndResetPasswordToken(String token) ;
+
 }
+
