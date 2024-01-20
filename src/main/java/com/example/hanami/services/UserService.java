@@ -4,6 +4,7 @@ import com.example.hanami.model.User;
 import com.example.hanami.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,14 +21,16 @@ public class UserService {
         //find user by email
         var user=userRepository.findByEmail(email);
 
-        if(user.isPresent()){
-            user.get().setResetPasswordToken(token);
-          // userRepository.save(user);
+        if(user != null){
+            user.setResetPasswordToken(token);
+          userRepository.save(user);
+        }else{
+            throw new UsernameNotFoundException("could not find the user");
         }
 
     }
     //method to getPasswordToken
-    public Optional<User> getByResetPasswordToken(String passwordToken){
+    public User getByResetPasswordToken(String passwordToken){
         return userRepository.findByAndResetPasswordToken(passwordToken);
     }
     //method to updatePassword

@@ -31,8 +31,11 @@ public class AppConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                Optional<User> user=userRepository.findByEmail(username);
-                return user.map(UserConfig::new).orElseThrow(()->new UsernameNotFoundException("user not found"));
+                User user=userRepository.findByEmail(username);
+                if(user ==null){
+                    throw new UsernameNotFoundException("could not find user");
+                }
+                return new UserConfig(user);
             }
         };
     }
