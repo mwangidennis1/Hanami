@@ -23,6 +23,7 @@ public class UserService {
 
         if(user != null){
             user.setResetPasswordToken(token);
+            System.out.println(user);
           userRepository.save(user);
         }else{
             throw new UsernameNotFoundException("could not find the user");

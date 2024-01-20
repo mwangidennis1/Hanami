@@ -36,14 +36,14 @@ public class ForgotPasswordController {
         gmailNotification.sendEmail(email,resetPasswordLink);
 
     }
-    @GetMapping("/reset_password")
+    @PostMapping("/reset_password")
     public ResponseEntity<String> resetPassword(@Param(value = "token") String token, @RequestBody AuthenticationRequest request){
         User user = userService.getByResetPasswordToken(token);
         System.out.println(user);
         if(user !=null){
             String newPassword=request.getPassword();
             userService.updatePassword(user,newPassword);
-            ResponseEntity.ok("its good");
+            return ResponseEntity.ok("its good");
         }
         return ResponseEntity.ok("not found");
     }
