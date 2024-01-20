@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Long> {
     @Query("""
-SELECT u FROM User u WHERE u.email =:email
+SELECT u FROM User u WHERE u.email =?1
 """)
     User findByEmail(String email);
-   @Query("""
- SELECT u FROM User u WHERE u.resetPasswordToken =:token
-""")
+  /* @Query("""
+ //SELECT u FROM User u WHERE u.resetPasswordToken =:token
+""")*/
     User findByAndResetPasswordToken(String token) ;
 
 }

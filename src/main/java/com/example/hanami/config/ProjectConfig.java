@@ -23,8 +23,10 @@ public class ProjectConfig {
     private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http.csrf(c ->c.disable())
-                .authorizeHttpRequests().requestMatchers("/","/register","/authenticate")
+                .authorizeHttpRequests()
+                .requestMatchers("/home","/register","/authenticate","/forgot_password/{email}","/reset_password")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

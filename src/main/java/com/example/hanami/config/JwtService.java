@@ -19,8 +19,8 @@ import java.util.function.Function;
 @Service
 @AllArgsConstructor
 public class JwtService {
-    @Value("${secret.key}")
-    private  static String SECRET_KEY;
+   // @Value("${secret.key}")
+    private  static String SECRET_KEY="74c6e18d69f432a810867a977e14e1f493cffcee234fc73e50823f23ae5dd7f2";
 
     public String extractUsernameClaims(String jwt){
      String username=extractClaim(jwt,Claims::getSubject);

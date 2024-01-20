@@ -36,6 +36,11 @@ public class App2Controller {
             return productService.get(id);
 
           }
+    @GetMapping("/home")
+    public String home(){
+        return "i am in";
+    }
+
     @PostMapping("/newproduct")
     public void newProduct(@RequestBody Product newproduct){
           productService.save(newproduct);
